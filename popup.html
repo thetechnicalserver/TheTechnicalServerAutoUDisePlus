@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Progression Auto Fill Pro</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="progression-popup-page">
+    <main class="progression-popup">
+      <header class="popup-title">
+        <img src="icons/icon48.jpeg" alt="">
+        <div>
+          <h1>Progression Auto Fill Pro</h1>
+          <p>UDISE live page fixed version 5.2</p>
+        </div>
+      </header>
+
+      <section class="settings-card">
+        <label>Marks Percentage (%)</label>
+        <div class="range-row">
+          <input id="minMarks" type="number" value="75" min="0" max="100">
+          <span>to</span>
+          <input id="maxMarks" type="number" value="85" min="0" max="100">
+        </div>
+
+        <label>Days Attended</label>
+        <div class="range-row">
+          <input id="minDays" type="number" value="205" min="0" max="366">
+          <span>to</span>
+          <input id="maxDays" type="number" value="215" min="0" max="366">
+        </div>
+
+        <label for="progressionStatus">Progression Status</label>
+        <select id="progressionStatus">
+          <option value="1">Promoted (by Examination)</option>
+          <option value="4">Promoted Without Examination</option>
+          <option value="3">Not Promoted / Repeater</option>
+        </select>
+
+        <label for="schoolingStatus">Schooling Status (2026-27)</label>
+        <select id="schoolingStatus">
+          <option value="1">Studying in Same School</option>
+          <option value="2">Left School with TC / without TC</option>
+        </select>
+
+        <label>Allowed Left School Reasons</label>
+        <div class="reason-list">
+          <label><input type="checkbox" name="leftReason" value="Family Relocation / Transfer" checked> Family Relocation / Transfer</label>
+          <label><input type="checkbox" name="leftReason" value="Distance from Residence" checked> Distance from Residence</label>
+          <label><input type="checkbox" name="leftReason" value="Unavailability of Stream / Medium / Subjects" checked> Unavailability of Stream / Medium / Subjects</label>
+          <label><input type="checkbox" name="leftReason" value="Better Academic Opportunities" checked> Better Academic Opportunities</label>
+          <label><input type="checkbox" name="leftReason" value="Govt-Private School Transfer" checked> Govt-Private School Transfer</label>
+          <label><input type="checkbox" name="leftReason" value="Others / Unknown Reasons" checked> Others / Unknown Reasons</label>
+        </div>
+
+        <div class="delay-row">
+          <label for="delayTime">Delay between updates (ms)</label>
+          <input id="delayTime" type="number" value="1000" min="300" step="100">
+        </div>
+      </section>
+
+      <section class="action-grid">
+        <button id="startAutoFillBtn" class="primary">START (Current Section)</button>
+        <button id="startFullAutoBtn" class="success">FULL AUTO (All Sections)</button>
+        <button id="stopProcessBtn" class="danger hidden">STOP PROCESS</button>
+        <button id="fillSingleAndUpdateBtn">Fill &amp; Update Current Row</button>
+        <button id="detectBtn">Detect Table Again</button>
+        <button id="resetBtn">Reset Progress</button>
+        <button id="exportBtn">Export Data</button>
+        <button id="importBtn">Import Data</button>
+        <button id="pagePanelBtn">Show / Hide Page Panel</button>
+        <button id="allFeaturesBtn" class="gold-outline">All Features on UDISE Page</button>
+        <button id="finalizeSectionBtn" class="gold-outline">Finalize Current Section</button>
+        <input id="importFile" class="hidden" type="file" accept=".json,application/json">
+      </section>
+
+      <div id="status" class="popup-status">Ready on the UDISE+ promotion page.</div>
+      <p class="popup-note">Same School selects the same section. The page controller stays compact until you open its complete feature view.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

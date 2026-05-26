@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "School Progression Auto Fill Pro",
+  "version": "5.2.0",
+  "description": "UDISE+ student progression auto fill with compact live controls and reliable multi-section updates.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://sdms.udiseplus.gov.in/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.jpeg",
+    "32": "icons/icon32.jpeg",
+    "48": "icons/icon48.jpeg",
+    "128": "icons/icon128.jpeg"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Progression Auto Fill Pro",
+    "default_icon": {
+      "16": "icons/icon16.jpeg",
+      "32": "icons/icon32.jpeg",
+      "48": "icons/icon48.jpeg",
+      "128": "icons/icon128.jpeg"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://sdms.udiseplus.gov.in/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
