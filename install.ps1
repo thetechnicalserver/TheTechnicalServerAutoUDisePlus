@@ -1,19 +1,36 @@
+$Host.UI.RawUI.WindowTitle="The Technical Server Auto UDISE Plus"
+$Host.UI.RawUI.BackgroundColor="Black"
+Clear-Host
+
 $RepoZip="https://github.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus/archive/refs/heads/main.zip"
 
-function WaitKey{
-[void][Console]::ReadKey($true)
+function Line{
+Write-Host "==========================================================" -ForegroundColor DarkCyan
+}
+
+function PauseMenu{
+Write-Host ""
+Write-Host "Press any key to continue..." -ForegroundColor DarkGray
+[Console]::ReadKey($true)>$null
+}
+
+function MenuItem($n,$t){
+
+Write-Host "  [$n] " -ForegroundColor Yellow -NoNewline
+Write-Host $t -ForegroundColor White
+
 }
 
 function DownloadExtension{
 
 Clear-Host
 
+Line
+Write-Host "         DOWNLOADING EXTENSION" -ForegroundColor Cyan
+Line
+
 $temp="$env:TEMP\TheTechnicalServer.zip"
 $folder="C:\TheTechnicalServerAutoUDisePlus-main"
-
-Write-Host ""
-Write-Host "Preparing Setup..."
-Write-Host ""
 
 try{
 
@@ -40,87 +57,32 @@ Remove-Item `
 $temp `
 -Force
 
-Start-Process explorer $folder
+Write-Host ""
+Write-Host "SUCCESS" -ForegroundColor Green
+Write-Host ""
+
+Write-Host "Installed Location:" -ForegroundColor Cyan
+Write-Host $folder -ForegroundColor White
+
+Write-Host ""
 
 try{
+
+Start-Process explorer $folder
 Start-Process chrome "chrome://extensions/"
+
 }
-catch{
-Start-Process "chrome://extensions/"
-}
-
-Clear-Host
-
-Write-Host ""
-Write-Host "==================================="
-Write-Host " EXTENSION INSTALLATION GUIDE "
-Write-Host "==================================="
-Write-Host ""
-Write-Host "STEP 1"
-Write-Host "Chrome opened"
-Write-Host ""
-Write-Host "Turn ON:"
-Write-Host "Developer Mode"
-Write-Host ""
-Write-Host "Top Right Corner"
-Write-Host ""
-Write-Host "Press any key"
-
-WaitKey
-
-Clear-Host
-
-Write-Host ""
-Write-Host "STEP 2"
-Write-Host ""
-Write-Host "Click:"
-Write-Host ""
-Write-Host "[ LOAD UNPACKED ]"
-Write-Host ""
-Write-Host "Press any key"
-
-WaitKey
-
-Clear-Host
-
-Write-Host ""
-Write-Host "STEP 3"
-Write-Host ""
-Write-Host "Select Folder:"
-Write-Host ""
-Write-Host $folder
-Write-Host ""
-Write-Host "Folder already opened"
-Write-Host ""
-Write-Host "Press any key after selecting"
-
-WaitKey
-
-Clear-Host
-
-Write-Host ""
-Write-Host "Completed"
-Write-Host ""
-Write-Host "Extension should now appear"
-Write-Host ""
-Write-Host "Thank for choosing us."
-Write-Host ""
-Write-Host "The Technical Server"
-Write-Host "@mr_ariph_ansari"
-Write-Host ""
-
-WaitKey
+catch{}
 
 }
 catch{
 
 Write-Host ""
-Write-Host "Installation Failed"
-Write-Host ""
-
-WaitKey
+Write-Host "FAILED" -ForegroundColor Red
 
 }
+
+PauseMenu
 
 }
 
@@ -130,18 +92,26 @@ while($true){
 
 Clear-Host
 
+Line
+
+Write-Host "              CONNECT WITH ME" -ForegroundColor Magenta
+
+Line
+
 Write-Host ""
-Write-Host "🌐 CONNECT WITH ME"
+
+Write-Host "THE TECHNICAL SERVER" -ForegroundColor Cyan
+Write-Host "Managed by @mr_ariph_ansari" -ForegroundColor Gray
+
 Write-Host ""
-Write-Host "👨‍💻 THE TECHNICAL SERVER"
-Write-Host "✨ Managed by @mr_ariph_ansari"
-Write-Host ""
-Write-Host "1 Facebook"
-Write-Host "2 YouTube"
-Write-Host "3 Twitter"
-Write-Host "4 Telegram"
-Write-Host "5 Instagram"
-Write-Host "6 Close"
+
+MenuItem "1" "Facebook"
+MenuItem "2" "YouTube"
+MenuItem "3" "Twitter (X)"
+MenuItem "4" "Telegram"
+MenuItem "5" "Instagram"
+MenuItem "6" "Close"
+
 Write-Host ""
 
 $key=[Console]::ReadKey($true).KeyChar
@@ -182,21 +152,31 @@ while($true){
 
 Clear-Host
 
+Line
+
+Write-Host "        THE TECHNICAL SERVER" -ForegroundColor Cyan
+Write-Host "            Auto UDISE Plus" -ForegroundColor White
+
+Line
+
 Write-Host ""
-Write-Host "==================================="
-Write-Host " THE TECHNICAL SERVER "
-Write-Host "==================================="
+
+MenuItem "1" "Open Blog"
+MenuItem "2" "Open GitHub Profile"
+MenuItem "3" "Direct Download Extension"
+MenuItem "4" "Reload Extension"
+MenuItem "5" "Download By GitHub Portal"
+MenuItem "6" "About Me"
+MenuItem "7" "Close"
+
 Write-Host ""
-Write-Host "1 Open Blog"
-Write-Host "2 Open GitHub Profile"
-Write-Host "3 Direct Download Extension"
-Write-Host "4 Reload"
-Write-Host "5 Download By GitHub Portal"
-Write-Host "6 About Me"
-Write-Host "7 Close"
+
+Line
+
 Write-Host ""
-Write-Host "Thank for choosing us."
-Write-Host "Have a good day."
+Write-Host "One Click  •  Faster  •  Smarter" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "Created By @mr_ariph_ansari" -ForegroundColor DarkGray
 Write-Host ""
 
 $key=[Console]::ReadKey($true).KeyChar
@@ -204,28 +184,47 @@ $key=[Console]::ReadKey($true).KeyChar
 switch($key){
 
 '1'{
-Start-Process "https://thesunshineghazipur.co.in"
+
+Start-Process `
+"https://thesunshineghazipur.co.in"
+
 }
 
 '2'{
-Start-Process "https://github.com/thetechnicalserver"
+
+Start-Process `
+"https://github.com/thetechnicalserver"
+
 }
 
 '3'{
+
 DownloadExtension
+
 }
 
 '4'{
+
+iex (
+irm `
+"https://raw.githubusercontent.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus/main/install.ps1"
+)
+
 exit
+
 }
 
 '5'{
-Start-Process `
+
+Start-Process chrome `
 "https://github.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus"
+
 }
 
 '6'{
+
 AboutMenu
+
 }
 
 '7'{
@@ -233,7 +232,9 @@ AboutMenu
 Clear-Host
 
 Write-Host ""
-Write-Host "Thank for choosing us."
+Write-Host "Thank for choosing us." -ForegroundColor Green
+Write-Host ""
+Write-Host "Have a great day." -ForegroundColor Cyan
 Write-Host ""
 
 Start-Sleep 2
