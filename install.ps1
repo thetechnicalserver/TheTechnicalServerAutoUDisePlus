@@ -305,7 +305,7 @@ $key=[Console]::ReadKey($true).KeyChar
 switch($key){
 
 '1'{
-OpenChrome "https://thesunshineghazipur.co.in"
+OpenChrome "https://www.thetechnicalserver.blogspot.com"
 }
 
 '2'{
