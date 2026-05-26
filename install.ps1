@@ -1,11 +1,20 @@
 $RepoZip="https://github.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus/archive/refs/heads/main.zip"
+$ReloadUrl="https://raw.githubusercontent.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus/main/install.ps1"
 
-function DownloadAndOpen{
+function Key{
+return [Console]::ReadKey($true).KeyChar
+}
+
+function PauseKey{
+[void][Console]::ReadKey($true)
+}
+
+function DownloadExtension{
+
+Clear-Host
 
 $temp="$env:TEMP\TheTechnicalServer.zip"
 $folder="C:\TheTechnicalServerAutoUDisePlus-main"
-
-Clear-Host
 
 Write-Host ""
 Write-Host "Downloading Extension..."
@@ -32,23 +41,25 @@ $guide=@"
 <!DOCTYPE html>
 <html>
 <head>
-<title>Extension Setup</title>
+<title>The Technical Server</title>
 <style>
 body{
 font-family:Arial;
-padding:40px;
+padding:50px;
+background:#fafafa;
 }
 .box{
-border:2px solid #333;
-padding:25px;
-border-radius:12px;
-}
-h1{
-color:#1976d2;
+max-width:900px;
+margin:auto;
+padding:30px;
+border-radius:16px;
+border:1px solid #ddd;
 }
 .step{
-font-size:18px;
-margin:16px 0;
+padding:12px;
+margin:10px 0;
+background:#f2f2f2;
+border-radius:10px;
 }
 </style>
 </head>
@@ -59,10 +70,10 @@ margin:16px 0;
 
 <h1>The Technical Server</h1>
 
-<p>Extension Downloaded Successfully</p>
+<h3>Extension Setup</h3>
 
 <div class='step'>
-1 → Open Chrome Extensions
+1 → Select Chrome Profile (if shown)
 </div>
 
 <div class='step'>
@@ -74,16 +85,14 @@ margin:16px 0;
 </div>
 
 <div class='step'>
-4 → Select:
+4 → Select Folder:
 <br><br>
 C:\TheTechnicalServerAutoUDisePlus-main
 </div>
 
 <br>
 
-<p>
 Managed by @mr_ariph_ansari
-</p>
 
 </div>
 
@@ -91,10 +100,10 @@ Managed by @mr_ariph_ansari
 </html>
 "@
 
-$guidePath="C:\TheTechnicalServerAutoUDisePlus-main\install_guide.html"
+$guideFile="$folder\install_guide.html"
 
 $guide | Set-Content `
-$guidePath `
+$guideFile `
 -Encoding UTF8
 
 Start-Process explorer $folder
@@ -107,24 +116,84 @@ Start-Process chrome `
 Start-Sleep 1
 
 Start-Process chrome `
-$filePath
+$file:///$guideFile
 
 }
 catch{}
 
+Clear-Host
+
 Write-Host ""
-Write-Host "Completed"
+Write-Host "Installed Successfully"
 Write-Host ""
+Write-Host "Location:"
+Write-Host $folder
+Write-Host ""
+Write-Host "Guide Opened In Chrome"
 
 }
 catch{
 
 Write-Host ""
-Write-Host "Download Failed"
+Write-Host "Installation Failed"
 
 }
 
-Pause
+PauseKey
+
+}
+
+function About{
+
+while($true){
+
+Clear-Host
+
+Write-Host ""
+Write-Host "🌐 Connect With Me"
+Write-Host ""
+Write-Host "👨‍💻 The Technical Server"
+Write-Host "✨ Managed by @mr_ariph_ansari"
+Write-Host ""
+Write-Host "1 Facebook"
+Write-Host "2 YouTube"
+Write-Host "3 Twitter"
+Write-Host "4 Telegram"
+Write-Host "5 Instagram"
+Write-Host "6 Close"
+Write-Host ""
+
+$c=Key
+
+switch($c){
+
+'1'{
+Start-Process "https://facebook.com/thetechnicalserver"
+}
+
+'2'{
+Start-Process "https://youtube.com/@thetechnicalserver"
+}
+
+'3'{
+Start-Process "https://x.com/thetechnicalserver"
+}
+
+'4'{
+Start-Process "https://t.me/thetechnicalserver"
+}
+
+'5'{
+Start-Process "https://instagram.com/mr_ariph_ansari"
+}
+
+'6'{
+return
+}
+
+}
+
+}
 
 }
 
@@ -133,31 +202,60 @@ while($true){
 Clear-Host
 
 Write-Host ""
+Write-Host "================================="
 Write-Host "THE TECHNICAL SERVER"
+Write-Host "================================="
 Write-Host ""
-Write-Host "1 Download Extension"
-Write-Host "2 Open GitHub"
-Write-Host "3 Exit"
+Write-Host "1 Open Blog"
+Write-Host "2 Open GitHub Profile"
+Write-Host "3 Direct Download Extension"
+Write-Host "4 Reload Extension"
+Write-Host "5 Download By GitHub Portal"
+Write-Host "6 About Me"
+Write-Host "7 Close"
+Write-Host ""
+Write-Host "Thank for choosing us."
+Write-Host "Have a good day."
 Write-Host ""
 
-$key=[Console]::ReadKey($true).KeyChar
+$key=Key
 
 switch($key){
 
 '1'{
-
-DownloadAndOpen
-
+Start-Process "https://thesunshineghazipur.co.in"
 }
 
 '2'{
-
-Start-Process `
-"https://github.com/thetechnicalserver"
-
+Start-Process "https://github.com/thetechnicalserver"
 }
 
 '3'{
+DownloadExtension
+}
+
+'4'{
+iex (irm $ReloadUrl)
+exit
+}
+
+'5'{
+Start-Process "https://github.com/thetechnicalserver/TheTechnicalServerAutoUDisePlus"
+}
+
+'6'{
+About
+}
+
+'7'{
+
+Clear-Host
+
+Write-Host ""
+Write-Host "Thank for choosing us."
+Write-Host "See you again."
+
+Start-Sleep 2
 
 exit
 
